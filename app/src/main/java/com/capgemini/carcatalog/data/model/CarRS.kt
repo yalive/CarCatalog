@@ -1,6 +1,6 @@
-package com.capgemini.carcatalog.data
+package com.capgemini.carcatalog.data.model
 
-import com.capgemini.carcatalog.ui.CarUiModel
+import com.capgemini.carcatalog.ui.cars.CarUiModel
 import com.google.gson.annotations.SerializedName
 
 data class CarListRS(
