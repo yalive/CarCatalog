@@ -1,4 +1,4 @@
-package com.capgemini.carcatalog
+package com.capgemini.carcatalog.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,11 +24,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.MutableCreationExtras
+import com.capgemini.carcatalog.ManualDI
+import com.capgemini.carcatalog.R
+import com.capgemini.carcatalog.ui.MainViewModel.Companion.CarCatalogRepositoryKey
 import com.capgemini.carcatalog.ui.theme.CarCatalogTheme
 
 class MainActivity : ComponentActivity() {
 
-    private val viewModel by viewModels<MainViewModel>()
+    private val viewModel by viewModels<MainViewModel>(
+        factoryProducer = { MainViewModel.factory },
+        extrasProducer = {
+            MutableCreationExtras().apply {
+                set(CarCatalogRepositoryKey, ManualDI.carCatalogRepository)
+            }
+        }
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
