@@ -65,7 +65,7 @@ fun CarItem(
 ) {
     Row {
         Image(
-            painter = painterResource(R.drawable.ic_launcher_background),
+            painter = painterResource(R.drawable.app_logo),
             contentDescription = null,
             modifier = Modifier.size(56.dp)
         )
