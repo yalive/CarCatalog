@@ -2,8 +2,9 @@ package com.capgemini.carcatalog.data.repository
 
 import com.capgemini.carcatalog.common.NetworkRunner
 import com.capgemini.carcatalog.common.Result
-import com.capgemini.carcatalog.data.model.CarRS
+import com.capgemini.carcatalog.data.model.toCarModel
 import com.capgemini.carcatalog.data.service.CarCatalogService
+import com.capgemini.carcatalog.domain.CarModel
 import javax.inject.Inject
 
 class CarCatalogRepository @Inject constructor(
@@ -11,9 +12,9 @@ class CarCatalogRepository @Inject constructor(
     private val networkRunner: NetworkRunner
 ) {
 
-    suspend fun getCars(): Result<List<CarRS>> {
+    suspend fun getCars(): Result<List<CarModel>> {
         return networkRunner.execute {
-            carCatalogService.getCars().models.orEmpty()
+            carCatalogService.getCars().models.orEmpty().map { it.toCarModel() }
         }
     }
 }
