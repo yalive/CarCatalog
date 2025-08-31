@@ -1,20 +1,19 @@
 package com.capgemini.carcatalog.ui.cars
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.CreationExtras
-import androidx.lifecycle.viewmodel.initializer
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.capgemini.carcatalog.common.Result
 import com.capgemini.carcatalog.data.model.toCarUiModel
 import com.capgemini.carcatalog.data.repository.CarCatalogRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(
-    private val carCatalogRepository: CarCatalogRepository
+@HiltViewModel
+class CarsViewModel @Inject constructor(
+    private val carCatalogRepository: CarCatalogRepository,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<CarsUiState>(CarsUiState.Loading)
@@ -56,17 +55,5 @@ class MainViewModel(
             )
         }
         _uiState.value = state
-    }
-
-    companion object {
-
-        object CarCatalogRepositoryKey : CreationExtras.Key<CarCatalogRepository>
-
-        val factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val repository = this[CarCatalogRepositoryKey] as CarCatalogRepository
-                MainViewModel(repository)
-            }
-        }
     }
 }

@@ -18,16 +18,33 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.capgemini.carcatalog.R
 
 
 @Composable
 fun CarsScreen(
+    modifier: Modifier = Modifier,
+    viewModel: CarsViewModel = viewModel(),
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    CarsScreenContent(
+        modifier = modifier,
+        uiState = uiState,
+        onRefresh = viewModel::refresh,
+        onRetry = viewModel::retry
+    )
+}
+
+@Composable
+private fun CarsScreenContent(
     modifier: Modifier = Modifier,
     uiState: CarsUiState,
     onRefresh: () -> Unit,

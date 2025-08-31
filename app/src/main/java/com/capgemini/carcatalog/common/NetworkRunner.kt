@@ -1,6 +1,8 @@
 package com.capgemini.carcatalog.common
 
-class NetworkRunner {
+import javax.inject.Inject
+
+class NetworkRunner @Inject constructor() {
 
     suspend fun <T> execute(
         request: suspend () -> T

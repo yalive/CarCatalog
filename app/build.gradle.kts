@@ -1,7 +1,11 @@
+import com.google.devtools.ksp.gradle.model.Ksp
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -43,6 +47,7 @@ dependencies {
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -53,6 +58,10 @@ dependencies {
     // Networking
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.complier)
 
     testImplementation(libs.junit)
 
