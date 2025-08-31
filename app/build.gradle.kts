@@ -63,6 +63,10 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.complier)
 
+    // Coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network.okhttp)
+
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)

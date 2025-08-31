@@ -1,6 +1,5 @@
 package com.capgemini.carcatalog.ui.cars
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,18 +14,21 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.capgemini.carcatalog.R
+import coil3.compose.AsyncImage
 
 
 @Composable
@@ -93,6 +95,10 @@ private fun CarListing(
         ) {
             items(cars.size) { index ->
                 CarItem(car = cars[index])
+                HorizontalDivider(
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                    thickness = 0.3.dp,
+                )
             }
         }
     }
@@ -103,15 +109,15 @@ private fun CarItem(
     car: CarUiModel
 ) {
     Row {
-        Image(
-            painter = painterResource(R.drawable.app_logo),
+        AsyncImage(
+            model = car.imageUrl,
             contentDescription = null,
             modifier = Modifier.size(56.dp)
         )
         Spacer(Modifier.width(16.dp))
         Column {
-            Text(text = car.name)
-            Text(text = car.description)
+            Text(text = car.name, fontSize = 18.sp)
+            Text(text = car.description, fontSize = 12.sp, fontWeight = FontWeight.Thin)
         }
     }
 }

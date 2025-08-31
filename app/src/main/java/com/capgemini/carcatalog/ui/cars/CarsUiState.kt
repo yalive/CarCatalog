@@ -8,5 +8,6 @@ sealed interface CarsUiState {
 
 data class CarUiModel(
     val name: String,
-    val description: String
+    val description: String,
+    val imageUrl: String
 )
