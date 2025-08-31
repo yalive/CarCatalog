@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">CarCatalog</string>
+
+    <!-- Cars screen-->
+    <string name="cars_screen_title">Car Catalog</string>
+    <string name="cars_screen_error_try_again_button">Try again</string>
+    <string
+        name="cars_screen_error_try_again">Error occurred while loading cars!\nPlease try again</string>
 </resources>
