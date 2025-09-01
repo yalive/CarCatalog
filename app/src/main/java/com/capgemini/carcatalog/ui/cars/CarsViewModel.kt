@@ -56,7 +56,7 @@ class CarsViewModel @Inject constructor(
         currentState = it
     }.stateIn(
         scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(0),
+        started = SharingStarted.WhileSubscribed(5_000),
         initialValue = currentState
     )
 
