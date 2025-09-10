@@ -19,7 +19,7 @@ class CarCatalogRepositoryTest {
     @Test
     fun `Cars loaded successfully`() = runTest {
         // Given
-        val repository = CarCatalogRepository(carCatalogService, NetworkRunner())
+        val repository = CarCatalogRepositoryImpl(carCatalogService, NetworkRunner())
         coEvery { carCatalogService.getCars() } returns CarListRS(CARS)
 
         // When
@@ -32,7 +32,7 @@ class CarCatalogRepositoryTest {
     @Test
     fun `Error loading cars`() = runTest {
         // Given
-        val repository = CarCatalogRepository(carCatalogService, NetworkRunner())
+        val repository = CarCatalogRepositoryImpl(carCatalogService, NetworkRunner())
         coEvery { carCatalogService.getCars() } throws UnknownHostException("No internet")
 
         // When

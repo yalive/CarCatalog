@@ -1,7 +1,6 @@
 package com.capgemini.carcatalog.domain
 
 import com.capgemini.carcatalog.common.Result
-import com.capgemini.carcatalog.data.repository.CarCatalogRepository
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
